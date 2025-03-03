@@ -237,21 +237,25 @@ void specialKeys(int k, int x, int y) {
 		}
 	}
 
-	int main() {
-
-		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // GLUT_DOUBLE work with glutPostRedisplay
+	int main(int argc, char** argv) {  // Add argc and argv parameters!
+		glutInit(&argc, argv);  // ✅ Initialize GLUT
+	
+		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);  // Enable double buffering and depth testing
 		glutInitWindowSize(ww, wh);
 		glutInitWindowPosition(100, 100);
-		glutCreateWindow("your name here");
-		init();
-
+		glutCreateWindow("Jacob Boyette");  
+	
+		init();  // Initialize OpenGL settings
+	
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
 		glutKeyboardFunc(keys);
 		glutSpecialFunc(specialKeys);
 		glutMouseFunc(mouse);
-
-		glutMainLoop();
+	
+		glutMainLoop();  // Start the event loop
 		return 0;
-
 	}
+	
+
+	

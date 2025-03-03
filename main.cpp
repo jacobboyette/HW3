@@ -84,7 +84,7 @@ void display(void) {
 	glLoadIdentity();
 	gluLookAt(rho * sin(theta * DtoR) * sin(phi * DtoR), rho * cos(phi * DtoR), rho * cos(theta * DtoR) * sin(phi * DtoR), 0, 0, 0, 0, 1, 0);
 
-	//----------- the cube --------------------------
+	//the cube 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glColor3f(1, 0, 0);
 	cube(a, b, c, d * 1.3);
@@ -93,14 +93,14 @@ void display(void) {
 	glColor3f(1, 1, 0);
 	cube(a, b, c, d * 1.3);
 
-	//----------- the teapot --------------------------
+	//the teapot
 	glPushMatrix(); // Save the current matrix
 	glTranslatef(a, b + d, c); // Translate to the top of the cube
 	glColor3f(0, 1, 1); // Set teapot color
-	glutSolidTeapot(d / 2); // Draw the teapot. adjust the size if needed.
+	glutSolidTeapot(d / 2); // Draw the teapot.
 	glPopMatrix(); // Restore the saved matrix
 
-	//----------- the teapot (line) --------------------------
+	//the teapot (line)
 	glPushMatrix();
 	glTranslatef(a, b + d, c);
 	glColor3f(0, 0, 0); // Different color for line view
@@ -237,25 +237,21 @@ void specialKeys(int k, int x, int y) {
 		}
 	}
 
-	int main(int argc, char** argv) {  // Add argc and argv parameters!
-		glutInit(&argc, argv);  // ✅ Initialize GLUT
-	
-		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);  // Enable double buffering and depth testing
+	int main() {
+
+		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // GLUT_DOUBLE work with glutPostRedisplay
 		glutInitWindowSize(ww, wh);
 		glutInitWindowPosition(100, 100);
-		glutCreateWindow("Jacob Boyette");  
-	
-		init();  // Initialize OpenGL settings
-	
+		glutCreateWindow("Jacob Boyette Assignment 3");
+		init();
+
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
 		glutKeyboardFunc(keys);
 		glutSpecialFunc(specialKeys);
 		glutMouseFunc(mouse);
-	
-		glutMainLoop();  // Start the event loop
-		return 0;
-	}
-	
 
-	
+		glutMainLoop();
+		return 0;
+
+	}
